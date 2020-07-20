@@ -25,22 +25,13 @@ SET(h52raw_SRCS
    h52raw.cpp
    )
 
-#Link to the HDF5 libraries
-FIND_LIBRARY(FERS_LIB_HDF5 NAMES hdf5 )
 
 ADD_EXECUTABLE(h52raw ${h52raw_SRCS})
 
-FIND_LIBRARY(FERS_LIB_HDF5 NAMES hdf5 )
-
-IF (FERS_LIB_HDF5)
-   TARGET_LINK_LIBRARIES(h52raw ${FERS_LIB_HDF5})
-ENDIF (FERS_LIB_HDF5)
-
-FIND_LIBRARY(FERS_LIB_HDF5_HL NAMES hdf5_hl )
-
-IF (FERS_LIB_HDF5_HL)
-   TARGET_LINK_LIBRARIES(h52raw ${FERS_LIB_HDF5_HL})
-ENDIF (FERS_LIB_HDF5_HL)
+#Link to the HDF5 libraries
+find_package(HDF5 COMPONENTS HL REQUIRED)
+include_directories(SYSTEM ${HDF5_INCLUDE_DIRS} ${HDF5_HL_INCLUDE_DIR})
+target_link_libraries(h52raw ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 
 ########### install files ###############
 

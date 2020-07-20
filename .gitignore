@@ -1,3 +1,14 @@
+## Output build directories
+build/
+
+## Core latex/pdflatex auxiliary files
 doc/equations/equations.aux
 doc/equations/equations.log
 doc/equations/equations.pdf
+
+## Build tool auxiliary files:
+*.synctex.gz
+doc/**/_tmp
+
+## Generated files
+doc/**/*.pdf
